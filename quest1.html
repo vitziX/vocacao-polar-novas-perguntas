@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="../img/Teste-vocacional.ico">
+    <title>Teste Vocacional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bodyQuest">
+
+    <div id="content">
+        <!-- Primeira pergunta -->
+        <div class="container">
+            <div class="card2">
+                <img src="imgCardPerg/fundoPerg1.png" alt="Descrição da Imagem" class="card2-img">
+                <h3><p class="card2-question">Se você se tornasse o herói da sua cidade, qual seria o seu maior feito?</p></h3>
+            </div>
+            <div class="inputs2">
+                <button class="input2 alternativa-btn" id="botao-1" onclick="registrarResposta('GRP1'); proximaPergunta(1)"><strong>Organizar</strong> e liderar um plano para proteger todo mundo.</button>
+                <button class="input2 alternativa-btn" id="botao-2" onclick="registrarResposta('GRP2'); proximaPergunta(1)"><strong>Criar</strong> uma solução nunca vista antes para o problema.</button>
+                <button class="input2 alternativa-btn" id="botao-3" onclick="registrarResposta('GRP3'); proximaPergunta(1)"><strong>Estar sempre por perto</strong> para ajudar quem precisa.</button>
+                <button class="input2 alternativa-btn" id="botao-4" onclick="registrarResposta('GRP4'); proximaPergunta(1)"><strong>Inspirar</strong> as pessoas a acreditarem em dias melhores.</button>
+            </div>
+        </div>
+
+    <script>
+
+        // Inicializa ou carrega pontuação do Local Storage
+let pontuacao = {
+    GRP1: 0,
+    GRP2: 0,
+    GRP3: 0,
+    GRP4: 0
+};
+
+// Zera a pontuação no Local Storage quando o teste inicia
+function iniciarTeste() {
+    localStorage.removeItem('pontuacao'); // Remove qualquer pontuação existente
+    pontuacao = {
+        GRP1: 0,
+        GRP2: 0,
+        GRP3: 0,
+        GRP4: 0
+    };
+    console.log('Pontuação inicializada:', pontuacao);
+}
+
+// Atualiza a pontuação e armazena no Local Storage
+function registrarResposta(resposta) {
+    pontuacao[resposta]++;
+    localStorage.setItem('pontuacao', JSON.stringify(pontuacao));
+    console.log(`Pontos Atualizados:`, pontuacao);
+}
+
+
+
+
+        // Função para exibir a próxima pergunta
+        function proximaPergunta(pergunta) {
+            if (pergunta === 1) {
+                document.getElementById('content').innerHTML = `
+                    <div class="container">
+                        <div class="card2">
+                            <img src="imgCardPerg/fundoPerg2.png" alt="Descrição da Imagem" class="card2-img">
+                            <h3><p class="card2-question">Sua turma vai criar um projeto do zero para a feira de tecnologia. Qual seria o seu papel?</p></h3>
+                        </div>
+                        <div class="inputs2">
+                            <button class="input2 alternativa-btn" id="botao-1" onclick="registrarResposta('GRP1'); proximaPergunta(2)"><strong>O Líder</strong>, que organiza as tarefas e cobra os prazos.</button>
+                            <button class="input2 alternativa-btn" id="botao-2" onclick="registrarResposta('GRP2'); proximaPergunta(2)"><strong>O Inovador</strong>, que sugere as ideias mais originais.</button>
+                            <button class="input2 alternativa-btn" id="botao-3" onclick="registrarResposta('GRP3'); proximaPergunta(2)"><strong>O Mentor</strong>, que garante que todos sejam ouvidos.</button>
+                            <button class="input2 alternativa-btn" id="botao-4" onclick="registrarResposta('GRP4'); proximaPergunta(2)"><strong>O Otimista</strong>, que mantém o grupo animado até o fim.</button>
+                        </div>
+                    </div>
+                `;
+            } else if (pergunta === 2) {
+                document.getElementById('content').innerHTML = `
+                    <div class="container">
+                        <div class="card2">
+                            <img src="imgCardPerg/fundoPerg3.png" alt="Descrição da Imagem" class="card2-img">
+                            <h3><p class="card2-question">Se você fosse convidado(a) para um tapete vermelho, o que estariam celebrando em você?</p></h3>
+                        </div>
+                        <div class="inputs2">
+                            <button class="input2 alternativa-btn" id="botao-1" onclick="registrarResposta('GRP1'); proximaPergunta(3)">Ter <strong>liderado</strong> um projeto que mudou muita coisa.</button>
+                            <button class="input2 alternativa-btn" id="botao-2" onclick="registrarResposta('GRP2'); proximaPergunta(3)">Ter <strong>criado</strong> algo original que ninguém tinha feito antes.</button>
+                            <button class="input2 alternativa-btn" id="botao-3" onclick="registrarResposta('GRP3'); proximaPergunta(3)">Ter <strong>ajudado e inspirado</strong> outras pessoas no caminho.</button>
+                            <button class="input2 alternativa-btn" id="botao-4" onclick="registrarResposta('GRP4'); proximaPergunta(3)">Ter <strong>espalhado energia boa</strong> por onde passou.</button>
+                        </div>
+                    </div>
+                `;
+            } else if (pergunta === 3) {
+                document.getElementById('content').innerHTML = `
+                    <div class="container">
+                        <div class="card2">
+                            <img src="imgCardPerg/fundoPerg4.png" alt="Descrição da Imagem" class="card2-img">
+                            <h3><p class="card2-question">Se esse relógio te desse uma passagem no tempo, para qual momento você iria?</p></h3>
+                        </div>
+                        <div class="inputs2">
+                            <button class="input2 alternativa-btn" id="botao-1" onclick="registrarResposta('GRP1'); proximaPergunta(4)">Para o <strong>futuro</strong>, ver no que meus planos de hoje se tornaram.</button>
+                            <button class="input2 alternativa-btn" id="botao-2" onclick="registrarResposta('GRP2'); proximaPergunta(4)">Para uma <strong>época de grandes invenções</strong> e descobertas.</button>
+                            <button class="input2 alternativa-btn" id="botao-3" onclick="registrarResposta('GRP3'); proximaPergunta(4)">Para um <strong>momento importante da história</strong>, para entender melhor as pessoas.</button>
+                            <button class="input2 alternativa-btn" id="botao-4" onclick="registrarResposta('GRP4'); proximaPergunta(4)">Para a <strong>festa ou show mais lendário</strong> de todos os tempos.</button>
+                        </div>
+                    </div>
+                `;
+            } else if (pergunta === 4) {
+                // Chama a função para verificar a pontuação e redirecionar
+                verificarPontuacao();
+            }
+        }
+
+       // Função para verificar a pontuação e redirecionar
+       function verificarPontuacao() {
+        // Salva a pontuação final no localStorage (já está sendo salvo nas funções anteriores)
+    localStorage.setItem('pontuacao', JSON.stringify(pontuacao));
+
+// Redireciona para a página desejada
+window.location.href = 'memory/memory.html'; // Substitua pelo URL correto
+}
+
+
+            // Chama a função para iniciar o teste ao carregar a página
+window.onload = iniciarTeste;
+
+
+    </script>
+</body>
+</html>

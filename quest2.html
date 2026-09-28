@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="../img/Teste-vocacional.ico">
+    <title>Teste Vocacional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bodyQuest">
+    <div id="content">
+
+        <div class="container">
+            <div class="card2">
+                <img src="imgCardPerg/fundoPerg5.png" alt="Descrição da Imagem" class="card2-img">
+                <h3><p class="card2-question">Se a sua vida fosse um jogo, qual seria o estilo dele?</p></h3>
+            </div>
+            <div class="inputs2">
+                <button class="input2 alternativa-btn" id="botao-1" onclick="registrarResposta('GRP1'); proximaPergunta(5)"><strong>Estratégia</strong>, onde cada decisão é planejada com cuidado.</button>
+                <button class="input2 alternativa-btn" id="botao-2" onclick="registrarResposta('GRP2'); proximaPergunta(5)"><strong>Mundo aberto</strong>, cheio de coisas novas para descobrir.</button>
+                <button class="input2 alternativa-btn" id="botao-3" onclick="registrarResposta('GRP3'); proximaPergunta(5)"><strong>Cooperativo</strong>, onde ninguém joga sozinho.</button>
+                <button class="input2 alternativa-btn" id="botao-4" onclick="registrarResposta('GRP4'); proximaPergunta(5)"><strong>Aventura</strong>, cheio de fases divertidas e imprevisíveis.</button>
+            </div>
+        </div>
+
+    <script>
+        // Carrega pontuação existente ou inicializa com valores do Local Storage
+        let pontuacao = JSON.parse(localStorage.getItem('pontuacao')) || {
+            GRP1: 0,
+            GRP2: 0,
+            GRP3: 0,
+            GRP4: 0
+        };
+
+        // Função para registrar a resposta e atualizar pontuação
+        function registrarResposta(resposta) {
+    pontuacao[resposta]++;
+    localStorage.setItem('pontuacao', JSON.stringify(pontuacao));
+    console.log('Pontos Atualizados:', pontuacao);
+}
+
+        // Função para exibir a próxima pergunta da segunda página
+        function proximaPergunta(pergunta) {
+    // Salva a pontuação da página atual no localStorage
+    localStorage.setItem('pontuacao_pagina_atual', JSON.stringify(pontuacao));
+
+    if (pergunta === 5) {
+        // Atualiza para a Pergunta 6
+        document.getElementById('content').innerHTML = `
+            <div id="content">
+             <div class="container">
+                <div class="card2">
+                    <img src="imgCardPerg/fundoPerg6.png" alt="Descrição da Imagem" class="card2-img">
+                    <h3><p class="card2-question">Um laboratório te dá liberdade total para criar algo novo. O que você desenvolve?</p></h3>
+                </div>
+                <div class="inputs2">
+                    <button class="input2 alternativa-btn" id="botao-1" onclick="registrarResposta('GRP1'); proximaPergunta(6)">Um <strong>sistema que organiza</strong> e resolve problemas em grande escala.</button>
+                    <button class="input2 alternativa-btn" id="botao-2" onclick="registrarResposta('GRP2'); proximaPergunta(6)">Uma <strong>invenção completamente inédita</strong>.</button>
+                    <button class="input2 alternativa-btn" id="botao-3" onclick="registrarResposta('GRP3'); proximaPergunta(6)">Algo que <strong>cuide da saúde</strong> ou bem-estar das pessoas.</button>
+                    <button class="input2 alternativa-btn" id="botao-4" onclick="registrarResposta('GRP4'); proximaPergunta(6)">Algo <strong>divertido</strong>, que leve alegria para qualquer lugar.</button>
+                </div>
+            </div>
+        `;
+    } else if (pergunta === 6) {
+        // Atualiza para a Pergunta 7
+        document.getElementById('content').innerHTML = `
+            <div id="content">
+                <div class="container">
+                    <div class="card2">
+                        <img src="imgCardPerg/fundoPerg7.png" alt="Descrição da Imagem" class="card2-img">
+                        <h3><p class="card2-question">Numa situação de sobrevivência, qual seria a sua maior contribuição para o grupo?</p></h3>
+                    </div>
+                    <div class="inputs2">
+                        <button class="input2 alternativa-btn" id="botao-1" onclick="registrarResposta('GRP1'); proximaPergunta(7)"><strong>Organizar</strong> os recursos e definir um plano claro.</button>
+                        <button class="input2 alternativa-btn" id="botao-2" onclick="registrarResposta('GRP2'); proximaPergunta(7)">Encontrar <strong>soluções criativas</strong> com o que tiver em mãos.</button>
+                        <button class="input2 alternativa-btn" id="botao-3" onclick="registrarResposta('GRP3'); proximaPergunta(7)"><strong>Manter todo mundo unido</strong> e cuidar de quem precisar.</button>
+                        <button class="input2 alternativa-btn" id="botao-4" onclick="registrarResposta('GRP4'); proximaPergunta(7)">Manter o <strong>ânimo do grupo</strong> lá em cima nos momentos difíceis.</button>
+                    </div>
+                </div>
+        `;
+    } else if (pergunta === 7) {
+        verificarPontuacao(); // Redireciona para a página final
+    }
+}
+
+        // Função para verificar a pontuação final e redirecionar
+        function verificarPontuacao() {
+    // Salva a pontuação final no localStorage (já está sendo salvo nas funções anteriores)
+    localStorage.setItem('pontuacao', JSON.stringify(pontuacao));
+
+    // Redireciona para a página desejada
+    window.location.href = 'stick/stick.html'; // Substitua pelo URL correto
+
+
+}
+    </script>
+</body>
+</html>
